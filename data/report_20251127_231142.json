@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "generated_at": "2025-11-27T23:11:42.680774"
+  },
+  "metrics": {
+    "sleep_analysis": "Severely insufficient sleep",
+    "health_analysis": "High heart rate, High stress"
+  },
+  "recommendations": "Try to increase sleep by 1\u20132 hours. Avoid heavy meals or caffeine before bed. Practice breathing exercises before bed.",
+  "score": {
+    "score": 55,
+    "category": "Fair"
+  },
+  "hypnogram": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    4,
+    1,
+    0
+  ],
+  "hr_series": [
+    101,
+    101,
+    98,
+    101,
+    108,
+    101,
+    99,
+    96
+  ],
+  "llm_summary": "LLM explanation error: OpenAI API key not set. Set OPENAI_API_KEY environment variable.",
+  "llm_trend": "LLM trend error: OpenAI API key not set. Set OPENAI_API_KEY environment variable."
+}

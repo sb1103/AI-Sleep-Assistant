@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "generated_at": "2025-11-27T22:26:59.528365"
+  },
+  "metrics": {
+    "sleep_analysis": "Severely insufficient sleep",
+    "health_analysis": "Normal heart rate, High stress"
+  },
+  "recommendations": "Try to increase sleep by 1\u20132 hours. Practice breathing exercises before bed.",
+  "score": {
+    "score": 55,
+    "category": "Fair"
+  },
+  "hypnogram": [
+    1,
+    4,
+    4,
+    4,
+    0,
+    4,
+    3,
+    3,
+    3
+  ],
+  "hr_series": [
+    74,
+    80,
+    83,
+    74,
+    84,
+    76,
+    81,
+    85,
+    84
+  ]
+}

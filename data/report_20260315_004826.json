@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "generated_at": "2026-03-15T00:48:26.700961"
+  },
+  "metrics": {
+    "sleep_analysis": "Severely insufficient sleep",
+    "health_analysis": "Normal heart rate, Moderate stress"
+  },
+  "recommendations": "Try to increase sleep by 1\u20132 hours. Try reducing screen time before sleep.",
+  "score": {
+    "score": 65,
+    "category": "Fair"
+  },
+  "hypnogram": [
+    2,
+    2,
+    3,
+    4,
+    4,
+    1,
+    4
+  ],
+  "hr_series": [
+    91,
+    84,
+    87,
+    90,
+    87,
+    82,
+    87
+  ],
+  "llm_summary": "LLM explanation error: OpenAI API key not set. Set OPENAI_API_KEY environment variable.",
+  "llm_trend": "LLM trend error: OpenAI API key not set. Set OPENAI_API_KEY environment variable."
+}
