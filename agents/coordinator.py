@@ -9,7 +9,7 @@ from agents.ml_sleep_agent import MLSleepAgent
 from agents.llm_agent_cloud import LLMAgentCloud
 
 class Coordinator:
-    def __init__(self, llm_model_name: str = "gpt-4o-mini"):
+    def __init__(self, llm_model_name: str = "gemini-2.5-flash"):
         self.collector = DataCollectorAgent()
         self.rule_sleep_agent = SleepAnalysisAgent()
         self.health_agent = HealthAgent()

@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "generated_at": "2026-07-30T17:44:06.719025"
+  },
+  "metrics": {
+    "sleep_analysis": "Below recommended sleep duration",
+    "health_analysis": "Normal heart rate, Moderate stress"
+  },
+  "recommendations": "Maintain a regular sleep schedule. Try reducing screen time before sleep.",
+  "score": {
+    "score": 65,
+    "category": "Fair"
+  },
+  "hypnogram": [
+    1,
+    1,
+    1,
+    0,
+    3,
+    4,
+    4,
+    3,
+    1,
+    0
+  ],
+  "hr_series": [
+    76,
+    68,
+    76,
+    77,
+    74,
+    69,
+    72,
+    66,
+    77,
+    69
+  ],
+  "llm_summary": "Gemini Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gpt-4o-mini is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}",
+  "llm_trend": "Gemini Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gpt-4o-mini is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"
+}

@@ -1,10 +1,9 @@
-# agents/ml_sleep_agent.py
+# ml_sleep_agent.py
 # ML-based Sleep Stage Predictor (HRV + Stress + HR)
 
 import numpy as np
 import joblib
 import os
-
 class MLSleepAgent:
     def __init__(self):
         model_path = os.path.join("models", "hrv_sleep_model.pkl")

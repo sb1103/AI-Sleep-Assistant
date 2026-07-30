@@ -49,7 +49,7 @@ st.markdown(
         .score-value {
             font-size: 50px;
             font-weight: 900;
-            margin-bottom: -5px;
+            margin-bottom: -5px;(
         }
 
         .score-label {
@@ -182,35 +182,34 @@ def plot_hypnogram(stages):
 # -------------------------------------------------------------------
 # Helper: Check API Key
 # -------------------------------------------------------------------
-def has_openai_key():
-    """Check if OPENAI_API_KEY is set in system environment."""
-    return os.getenv("OPENAI_API_KEY") is not None
+def has_gemini_key():
+    return os.getenv("GEMINI_API_KEY") is not None
 
 
 # =====================================================================
 #                             SIDEBAR
 # =====================================================================
-st.sidebar.title("📌 Navigation")
+st.sidebar.title(" Navigation")
 
 menu = st.sidebar.radio(
     "Go to:",
     [
-        "🏠 Home",
-        "📊 Analysis",
-        "🤖 AI Summary",
-        "💬 Chat Coach",
-        "📈 Charts",
-        "💡 Recommendations",
-        "🕒 History",
-        "ℹ️ About"
+        " Home",
+        " Analysis",
+        " AI Summary",
+        " Chat Coach",
+        " Charts",
+        " Recommendations",
+        " History",
+        " About"
     ]
 )
 
 # =====================================================================
 #                                HOME
 # =====================================================================
-if menu == "🏠 Home":
-    st.title("Welcome to Sleep Assistant 😴")
+if menu == " Home":
+    st.title("Welcome to Sleep Assistant ")
     st.markdown(
         """
         A smart multi-agent system that:
@@ -229,8 +228,8 @@ if menu == "🏠 Home":
 # =====================================================================
 #                               ANALYSIS
 # =====================================================================
-elif menu == "📊 Analysis":
-    st.title("📊 Sleep Analysis")
+elif menu == " Analysis":
+    st.title("Sleep Analysis")
 
     st.markdown("<div class='card'>", unsafe_allow_html=True)
     st.subheader("Input Your Data")
@@ -245,8 +244,8 @@ elif menu == "📊 Analysis":
 
     if analyze_btn:
 
-        if not has_openai_key():
-            st.warning("⚠️ OpenAI API key not found. AI Summary and Chat will not work.")
+        if not has_gemini_key():
+            st.warning(" OpenAI API key not found. AI Summary and Chat will not work.")
 
         coordinator = Coordinator()
         try:
@@ -254,7 +253,7 @@ elif menu == "📊 Analysis":
                 sleep_hours, heart_rate, stress_level
             )
         except Exception as e:
-            st.error(f"❌ Internal Error: {e}")
+            st.error(f" Internal Error: {e}")
             sleep_res, health_res, advice, score = "Error", "Error", "Error", {"score": 0, "category": "Error"}
             llm_summary, llm_trend = "LLM failed", "LLM failed"
 
@@ -307,18 +306,18 @@ elif menu == "📊 Analysis":
         )
 
         st.markdown("<div class='card'>", unsafe_allow_html=True)
-        st.subheader("🤖 AI Summary (Cloud LLM)")
+        st.subheader(" AI Summary (Cloud LLM)")
         st.write(llm_summary)
 
-        st.subheader("📈 AI 3-Day Trend Prediction")
+        st.subheader(" AI 3-Day Trend Prediction")
         st.write(llm_trend)
         st.markdown("</div>", unsafe_allow_html=True)
 
 # =====================================================================
 #                           AI SUMMARY
 # =====================================================================
-elif menu == "🤖 AI Summary":
-    st.title("🤖 AI-Generated Summary")
+elif menu == " AI Summary":
+    st.title(" AI-Generated Summary")
 
     files = sorted(os.listdir(DATA_DIR), reverse=True)
     if not files:
@@ -336,13 +335,13 @@ elif menu == "🤖 AI Summary":
 # =====================================================================
 #                            CHAT COACH
 # =====================================================================
-elif menu == "💬 Chat Coach":
-    st.title("💬 Chat with AI Sleep Coach")
+elif menu == " Chat Coach":
+    st.title(" Chat with AI Sleep Coach")
 
     llm = LLMAgentCloud()
 
     if not has_openai_key():
-        st.warning("⚠️ OpenAI API key missing. Chat will not work.")
+        st.warning("OpenAI API key missing. Chat will not work.")
 
     user_msg = st.text_input("Ask something about your sleep:")
 
@@ -358,8 +357,8 @@ elif menu == "💬 Chat Coach":
 # =====================================================================
 #                               CHARTS
 # =====================================================================
-elif menu == "📈 Charts":
-    st.title("📈 Sleep Charts")
+elif menu == "Charts":
+    st.title(" Sleep Charts")
     files = sorted(os.listdir(DATA_DIR), reverse=True)
     if not files:
         st.warning("No reports yet.")
@@ -376,8 +375,8 @@ elif menu == "📈 Charts":
 # =====================================================================
 #                         RECOMMENDATIONS
 # =====================================================================
-elif menu == "💡 Recommendations":
-    st.title("💡 Personalized Recommendations")
+elif menu == " Recommendations":
+    st.title(" Personalized Recommendations")
     files = sorted(os.listdir(DATA_DIR), reverse=True)
     if not files:
         st.warning("No reports yet.")
@@ -401,8 +400,8 @@ elif menu == "💡 Recommendations":
 # =====================================================================
 #                               HISTORY
 # =====================================================================
-elif menu == "🕒 History":
-    st.title("🕒 Previous Reports")
+elif menu == " History":
+    st.title(" Previous Reports")
     files = sorted(os.listdir(DATA_DIR), reverse=True)
     if not files:
         st.warning("No reports found.")
@@ -416,8 +415,8 @@ elif menu == "🕒 History":
 # =====================================================================
 #                                ABOUT
 # =====================================================================
-elif menu == "ℹ️ About":
-    st.title("ℹ️ About This Project")
+elif menu == " About":
+    st.title(" About This Project")
     st.markdown(
         """
         **Sleep Assistant Multi-Agent System**  

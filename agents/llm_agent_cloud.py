@@ -1,77 +1,78 @@
-#llm_agent_cloud.py
 import os
 import json
-import openai
+from google import genai
 from dotenv import load_dotenv
 
-# Load environment variables from .env
 load_dotenv()
 
-# Get API key from environment
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+API_KEY = os.getenv("GEMINI_API_KEY")
 
-if OPENAI_API_KEY:
-    openai.api_key = OPENAI_API_KEY
-else:
-    openai.api_key = None
+if not API_KEY:
+    raise RuntimeError("GEMINI_API_KEY not found in .env")
+
+client = genai.Client(api_key=API_KEY)
 
 
 class LLMAgentCloud:
-    def __init__(self, model="gpt-4o-mini"):
-        """
-        model: change to whichever model you have access to
-        """
+
+    def __init__(self, model="gemini-2.5-flash"):
         self.model = model
 
-    def _ask(self, system_prompt: str, user_prompt: str, max_tokens: int = 512, temperature: float = 0.2):
-        """
-        Send a chat-style request to OpenAI.
-        """
-        if openai.api_key is None:
-            raise RuntimeError("OpenAI API key not set. Set OPENAI_API_KEY environment variable.")
+    def _ask(self, system_prompt: str, user_prompt: str):
 
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
+        prompt = f"""
+{system_prompt}
 
-        response = openai.ChatCompletion.create(
-            model=self.model,
-            messages=messages,
-            max_tokens=max_tokens,
-            temperature=temperature
-        )
+{user_prompt}
+"""
 
-        text = response.choices[0].message["content"]
-        return text
+        try:
+            response = client.models.generate_content(
+                model=self.model,
+                contents=prompt,
+            )
 
-    # Sleep report explanation
-    def explain_sleep_report(self, report_json: dict):
-        system = "You are a concise sleep expert. Explain results clearly and give prioritized practical suggestions."
+            return response.text
 
-        user = (
-            "Please analyze the following sleep report and produce:\n"
-            "1) A short summary (3-5 sentences)\n"
-            "2) Top 5 prioritized actionable recommendations\n"
-            "3) One brief important risk note (if applicable)\n\n"
-            f"Data:\n{json.dumps(report_json, indent=2)}"
-        )
+        except Exception as e:
+            return f"Gemini Error: {e}"
 
-        return self._ask(system, user, max_tokens=400)
+    def explain_sleep_report(self, report_json):
 
-    # Chat-based coach
-    def chat_with_user(self, message: str):
-        system = "You are a friendly, evidence-based sleep coach. Provide clear, short answers and practical tips."
+        system = """
+You are a professional sleep expert.
 
-        return self._ask(system, message, max_tokens=300)
+Analyze the sleep report.
 
-    # Predictive trend
-    def predict_trend(self, report_json: dict):
-        system = "You are a sleep trends analyst. Use recent metrics to predict short-term trend."
+Return:
+1. Overall Sleep Quality
+2. Summary
+3. Health Insights
+4. Top 5 Recommendations
+"""
 
-        user = (
-            "Predict whether sleep efficiency will improve, worsen, or stay similar over the next 3 nights.\n\n"
-            f"Data:\n{json.dumps(report_json, indent=2)}"
-        )
+        return self._ask(system, json.dumps(report_json, indent=2))
 
-        return self._ask(system, user, max_tokens=400)
+    def predict_trend(self, report_json):
+
+        system = """
+Predict the user's sleep trend for the next 3 nights.
+
+Include:
+- Prediction
+- Confidence
+- Explanation
+- Suggestions
+"""
+
+        return self._ask(system, json.dumps(report_json, indent=2))
+
+    def chat_with_user(self, message):
+
+        system = """
+You are an AI Sleep Coach.
+
+Keep answers short, practical and friendly.
+"""
+
+        return self._ask(system, message)

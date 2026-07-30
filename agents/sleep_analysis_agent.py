@@ -1,5 +1,4 @@
 # sleep_analysis_agent.py
-
 class SleepAnalysisAgent:
     def analyze(self, data):
         sleep_hours = data["sleep_hours"]

@@ -3,7 +3,6 @@
 class RecommendationAgent:
     def recommend(self, sleep_result, health_result):
         advice = []
-
         # Sleep-based recommendations
         if "insufficient" in sleep_result:
             advice.append("Try to increase sleep by 1–2 hours.")
@@ -13,7 +12,6 @@ class RecommendationAgent:
             advice.append("Reduce oversleeping and maintain a routine.")
         else:
             advice.append("Your sleep duration looks healthy!")
-
         # Health-based recommendations
         if "High heart rate" in health_result:
             advice.append("Avoid heavy meals or caffeine before bed.")

@@ -13,20 +13,17 @@ class ScoreAgent:
 
         # Base score from hours: 0h -> 0, 8h -> 100, >10 clamp
         base = max(0, min(100, (sleep_hours / 8.0) * 100))
-
         # HR penalty (if >100 or <50)
         hr_pen = 0
         if hr > 100:
             hr_pen = 15
         elif hr < 50:
             hr_pen = 10
-
         # Stress penalty (scale 1-10)
         stress_pen = (stress - 1) * 3  # upto 27
 
         score = base - hr_pen - stress_pen
         score = int(max(0, min(100, score)))
-
         # categorize
         if score < 50:
             category = "Poor"
@@ -36,5 +33,4 @@ class ScoreAgent:
             category = "Good"
         else:
             category = "Excellent"
-
         return {"score": score, "category": category}
